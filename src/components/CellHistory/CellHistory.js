@@ -7,8 +7,8 @@ const CellHistory = (props) => {
   };
 
   const renderHistory = (data) => {
-    const history = data.map((item) => {
-      return <div>{item}</div>;
+    const history = data.map((item, index) => {
+      return <div key={index}>{item}</div>;
     });
     return (
       <div className="cell-history-wrapper">{history}</div>

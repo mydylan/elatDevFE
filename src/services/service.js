@@ -11,7 +11,14 @@ const Service = {
   },
 
   createContact: (data) => {
-    return fetch(`${apiServerUrl}/contacts`, { method: 'post', body: JSON.stringify(data) });
+    return fetch(`${apiServerUrl}/contacts`, {
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      method: 'post',
+      body: JSON.stringify(data)
+    });
   },
 
   updateContact: (id, data) => {

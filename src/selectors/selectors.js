@@ -7,19 +7,19 @@ const contactById = (contacts, id) => {
 };
 
 const contactsSelector = (state) => {
-  return state.contacts;
+  return state.contactList.contacts;
 };
 
 const idSelector = (state) => {
-  return state.selectedId;
+  return state.contactList.selectedId;
 };
 
 const isLoadingSelector = (state) => {
-  return state.isLoading;
+  return state.contactList.isLoading;
 };
 
 const isActiveSelector = (state) => {
-  return state.isActiveForm;
+  return state.contactList.isActiveForm;
 };
 
 const contactByIdSelector = createSelector(

@@ -79,7 +79,7 @@ const initialState = {
   contacts: [],
   isLoading: false,
   isActiveForm: false,
-  selectedId: false,
+  selectedId: '',
   error: false
 };
 
