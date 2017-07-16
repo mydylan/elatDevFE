@@ -1,11 +1,12 @@
 import React from 'react';
+import Table from '../Table/Table';
 
 class ContactList extends React.Component {
 
   render() {
     return (
       <div>
-        CONTACTS
+        <Table />
       </div>
     );
   }

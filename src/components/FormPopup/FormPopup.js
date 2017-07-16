@@ -5,7 +5,7 @@ class FormPopup extends React.Component {
   render() {
     return (
       <div>
-        CONTACTS
+        FORM
       </div>
     );
   }

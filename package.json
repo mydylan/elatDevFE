@@ -27,10 +27,9 @@
   },
   "dependencies": {
     "bootstrap": "^3.3.7",
-    "fixed-data-table": "^0.6.4",
     "react": "^15.4.1",
+    "react-bootstrap-table": "^3.4.6",
     "react-dom": "^15.4.1",
-    "react-paginate": "^4.4.3",
     "react-redux": "^5.0.1",
     "redux": "^3.6.0",
     "redux-devtools": "^3.3.1",
