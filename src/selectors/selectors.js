@@ -15,11 +15,11 @@ const idSelector = (state) => {
 };
 
 const isLoadingSelector = (state) => {
-  return state.isLoadingSelector;
+  return state.isLoading;
 };
 
 const isActiveSelector = (state) => {
-  return state.isActiveSelector;
+  return state.isActiveForm;
 };
 
 const contactByIdSelector = createSelector(
@@ -32,5 +32,6 @@ export {
   contactsSelector,
   isActiveSelector,
   isLoadingSelector,
-  contactByIdSelector
+  contactByIdSelector,
+  idSelector
 };

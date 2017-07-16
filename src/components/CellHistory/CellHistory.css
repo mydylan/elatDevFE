@@ -1,0 +1,4 @@
+.cell-history-wrapper {
+  max-height: 75px;
+  overflow: scroll;
+}

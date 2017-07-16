@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import './CellHistory.css';
 
 const CellHistory = (props) => {
   const handler = () => {
@@ -10,7 +11,7 @@ const CellHistory = (props) => {
       return <div>{item}</div>;
     });
     return (
-      <div>{history}</div>
+      <div className="cell-history-wrapper">{history}</div>
     );
   };
 

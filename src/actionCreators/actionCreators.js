@@ -6,7 +6,8 @@ import {
   CREATE_CONTACT,
   UPDATE_CONTACT,
   DELETE_CONTACT,
-  SHOW_FORM
+  SHOW_FORM,
+  HIDE_FORM
 } from '../constants/constants';
 
 export function dataRequestAction() {
@@ -104,6 +105,15 @@ export function showFormAction(id) {
     },
     metadata: {
       isActiveForm: true
+    }
+  };
+}
+
+export function hideFormAction() {
+  return {
+    type: HIDE_FORM,
+    metadata: {
+      isActiveForm: false
     }
   };
 }

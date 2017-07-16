@@ -7,7 +7,8 @@ import {
   createContactAction,
   updateContactAction,
   deleteContactAction,
-  showFormAction
+  showFormAction,
+  hideFormAction
 } from '../actionCreators/actionCreators';
 
 const errorHandler = (dispatch) => {
@@ -89,5 +90,11 @@ export function deleteContact(id) {
 export function showForm(id) {
   return (dispatch) => {
     return dispatch(showFormAction(id));
+  };
+}
+
+export function hideForm(id) {
+  return (dispatch) => {
+    return dispatch(hideFormAction(id));
   };
 }
