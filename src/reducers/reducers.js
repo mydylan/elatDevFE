@@ -6,25 +6,24 @@ import {
   CREATE_CONTACT,
   UPDATE_CONTACT,
   DELETE_CONTACT,
-  UPDATE_PAGINATION,
   SHOW_FORM
 } from '../constants/constants';
 
 const addHistory = ({ data, id }) => {
   return (contact) => {
-    return contact.id === id ? { ...contact, history: data } : contact;
+    return contact._id === id ? { ...contact, history: data } : contact;
   };
 };
 
 const updateContact = ({ data, id }) => {
   return (contact) => {
-    return contact.id === id ? { ...contact, ...data } : contact;
+    return contact._id === id ? { ...contact, ...data } : contact;
   };
 };
 
 const deleteContact = (id) => {
   return (contact) => {
-    return contact.id !== id;
+    return contact._id !== id;
   };
 };
 
@@ -64,12 +63,6 @@ const ACTION_HANDLERS = {
     contacts: state.contacts.filter(deleteContact(action.payload.id)),
     ...action.metadata
   }),
-  [UPDATE_PAGINATION]: (state, action) => ({
-    ...state,
-    page: action.payload.page,
-    limit: action.payload.limit,
-    ...action.metadata
-  }),
   [SHOW_FORM]: (state, action) => ({
     ...state,
     selectedId: action.payload.id,
@@ -82,8 +75,6 @@ const initialState = {
   isLoading: false,
   isActiveForm: false,
   selectedId: false,
-  page: 1,
-  limit: 10,
   error: false
 };
 

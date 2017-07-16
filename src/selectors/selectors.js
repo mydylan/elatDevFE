@@ -22,14 +22,6 @@ const isActiveSelector = (state) => {
   return state.isActiveSelector;
 };
 
-const pageSelector = (state) => {
-  return state.page;
-};
-
-const limitSelector = (state) => {
-  return state.limit;
-};
-
 const contactByIdSelector = createSelector(
   contactsSelector,
   idSelector,
@@ -40,7 +32,5 @@ export {
   contactsSelector,
   isActiveSelector,
   isLoadingSelector,
-  contactByIdSelector,
-  pageSelector,
-  limitSelector
+  contactByIdSelector
 };

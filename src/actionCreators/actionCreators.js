@@ -6,7 +6,6 @@ import {
   CREATE_CONTACT,
   UPDATE_CONTACT,
   DELETE_CONTACT,
-  UPDATE_PAGINATION,
   SHOW_FORM
 } from '../constants/constants';
 
@@ -97,20 +96,7 @@ export function deleteContactAction(id) {
   };
 }
 
-export function paginateAction(page, limit) {
-  return {
-    type: UPDATE_PAGINATION,
-    payload: {
-      page, limit
-    },
-    metadata: {
-      isLoading: false
-    },
-    error: false
-  };
-}
-
-export function showForm(id) {
+export function showFormAction(id) {
   return {
     type: SHOW_FORM,
     payload: {

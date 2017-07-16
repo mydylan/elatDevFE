@@ -1,36 +1,50 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
-
-const products = [];
-
-const addProducts = (quantity) => {
-  const startId = products.length;
-  for (let i = 0; i < quantity; i += 1) {
-    const id = startId + i;
-    products.push({
-      id,
-      name: `Item name ${id}`,
-      price: 2100 + i
-    });
-  }
-};
-
-addProducts(70);
+import CellHistory from '../CellHistory/CellHistory';
+import CellEdit from '../CellEdit/CellEdit';
+import CellDelete from '../CellDelete/CellDelete';
 
 export default class DefaultPaginationTable extends React.Component {
+
+  static propTypes = {
+    data: PropTypes.arrayOf(PropTypes.object),
+    onCreate: PropTypes.func,
+    getHistory: PropTypes.func,
+    showForm: PropTypes.func,
+    deleteContact: PropTypes.func
+  }
+
+  cellHistory = (cell, row) => {
+    return <CellHistory onClick={this.props.getHistory} cell={cell} row={row} />;
+  }
+
+  cellEdit = (cell, row) => {
+    return <CellEdit onClick={this.props.showForm} cell={cell} row={row} />;
+  }
+
+  cellDelete = (cell, row) => {
+    return <CellDelete onClick={this.props.deleteContact} cell={cell} row={row} />;
+  }
+
   render() {
     return (
       <div>
-        <div className="col-md-offset-1 col-md-8">
-          <div className="panel panel-default">
-            <div className="panel-heading">Contacts</div>
-            <div className="panel-body">
-              <BootstrapTable data={products} pagination>
-                <TableHeaderColumn dataField="id" isKey>Product ID</TableHeaderColumn>
-                <TableHeaderColumn dataField="name">Product Name</TableHeaderColumn>
-                <TableHeaderColumn dataField="price">Product Price</TableHeaderColumn>
-              </BootstrapTable>
-            </div>
+        <div className="panel panel-default">
+          <div className="panel-heading">
+            <h2>Contacts</h2>
+            <button className="btn btn-primary" onClick={this.props.onCreate}>Create</button>
+          </div>
+          <div className="panel-body">
+            <BootstrapTable data={this.props.data} pagination>
+              <TableHeaderColumn dataField="id" isKey hidden>ID</TableHeaderColumn>
+              <TableHeaderColumn dataField="firstName">First Name</TableHeaderColumn>
+              <TableHeaderColumn dataField="lastName">Last Name</TableHeaderColumn>
+              <TableHeaderColumn dataField="phoneNumber">Phone Number</TableHeaderColumn>
+              <TableHeaderColumn dataField="email">Email</TableHeaderColumn>
+              <TableHeaderColumn dataField="history" dataFormat={this.cellHistory}>History of Calls</TableHeaderColumn>
+              <TableHeaderColumn width={'100'} dataFormat={this.cellEdit}>Edit</TableHeaderColumn>
+              <TableHeaderColumn width={'100'} dataFormat={this.cellDelete}>Delete</TableHeaderColumn>
+            </BootstrapTable>
           </div>
         </div>
       </div>

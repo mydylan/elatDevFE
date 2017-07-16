@@ -7,7 +7,7 @@ import {
   createContactAction,
   updateContactAction,
   deleteContactAction,
-  paginateAction
+  showFormAction
 } from '../actionCreators/actionCreators';
 
 const errorHandler = (dispatch) => {
@@ -16,14 +16,20 @@ const errorHandler = (dispatch) => {
   };
 };
 
-export function getContacts(limit, page) {
+const parse = (data) => {
+  return {
+    ...data,
+    history: []
+  };
+};
+
+export function getContacts() {
   return (dispatch) => {
     dispatch(dataRequestAction());
-    return Service.getContacts(limit, page)
+    return Service.getContacts()
       .then((response) => {
         return response.json().then((data) => {
-          dispatch(getContactsAction(data));
-          dispatch(paginateAction(limit, page));
+          dispatch(getContactsAction(data.map(parse)));
         });
       })
       .catch(errorHandler);
@@ -36,7 +42,7 @@ export function getHistory(id) {
     return Service.getHistoryById(id)
       .then((response) => {
         return response.json().then((data) => {
-          dispatch(getHistoryAction(data, id));
+          dispatch(getHistoryAction(data[0].history, id));
         });
       })
       .catch(errorHandler);
@@ -49,7 +55,7 @@ export function createContact(contact) {
     return Service.createContact(contact)
       .then((response) => {
         return response.json().then((data) => {
-          dispatch(createContactAction(data));
+          dispatch(createContactAction(parse(data)));
         });
       })
       .catch(errorHandler);
@@ -62,7 +68,7 @@ export function updateContact(id, contact) {
     return Service.updateContact(id, contact)
       .then((response) => {
         return response.json().then((data) => {
-          dispatch(updateContactAction(data, id));
+          dispatch(updateContactAction(parse(data), id));
         });
       })
       .catch(errorHandler);
@@ -77,5 +83,11 @@ export function deleteContact(id) {
         return dispatch(deleteContactAction(id));
       })
       .catch(errorHandler);
+  };
+}
+
+export function showForm(id) {
+  return (dispatch) => {
+    return dispatch(showFormAction(id));
   };
 }

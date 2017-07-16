@@ -21,7 +21,8 @@ module.exports = {
     }],
     "react/prefer-stateless-function": ["off", {
       "ignorePureComponents": false
-    }]
+    }],
+    "no-underscore-dangle": [2, { "allow": ["_id"] }]
   },
   "plugins": [
       "react",

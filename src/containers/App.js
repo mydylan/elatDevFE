@@ -1,18 +1,16 @@
 import { connect } from 'react-redux';
-import { getContacts, getHistory, deleteContact } from '../middlewares/middlewares';
+import { getContacts, getHistory, deleteContact, showForm } from '../middlewares/middlewares';
 import ContactList from '../components/ContactList/ContactList';
-import { contactsSelector, isLoadingSelector, pageSelector, limitSelector } from '../selectors/selectors';
+import { contactsSelector, isLoadingSelector } from '../selectors/selectors';
 
 const mapDispatchToProps = {
-  getContacts, getHistory, deleteContact
+  getContacts, getHistory, deleteContact, showForm
 };
 
 const mapStateToProps = (state) => {
   return {
     contacts: contactsSelector(state),
-    isLoading: isLoadingSelector(state),
-    page: pageSelector(state),
-    limit: limitSelector(state)
+    isLoading: isLoadingSelector(state)
   };
 };
 
