@@ -1,6 +1,5 @@
 import Service from '../services/service';
 import {
-  dataRequestAction,
   dataFailureAction,
   getContactsAction,
   getHistoryAction,
@@ -10,6 +9,7 @@ import {
   showFormAction,
   hideFormAction
 } from '../actionCreators/actionCreators';
+import list from '../mocks/list';
 
 const errorHandler = (dispatch) => {
   return (err) => {
@@ -26,12 +26,15 @@ const parse = (data) => {
 
 export function getContacts() {
   return (dispatch) => {
-    dispatch(dataRequestAction());
     return Service.getContacts()
-      .then((response) => {
-        return response.json().then((data) => {
-          dispatch(getContactsAction(data.map(parse)));
-        });
+// USED RESPONSE
+      // .then((response) => {
+      //   return response.json().then((data) => {
+      //     dispatch(getContactsAction(data.map(parse)));
+      //   });
+// USED MOCKED LIST
+      .then(() => {
+        dispatch(getContactsAction(list.map(parse)));
       })
       .catch(errorHandler);
   };
@@ -39,7 +42,6 @@ export function getContacts() {
 
 export function getHistory(id) {
   return (dispatch) => {
-    dispatch(dataRequestAction());
     return Service.getHistoryById(id)
       .then((response) => {
         return response.json().then((data) => {
@@ -52,7 +54,6 @@ export function getHistory(id) {
 
 export function createContact(contact) {
   return (dispatch) => {
-    dispatch(dataRequestAction());
     return Service.createContact(contact)
       .then((response) => {
         return response.json().then((data) => {
@@ -65,7 +66,6 @@ export function createContact(contact) {
 
 export function updateContact(id, contact) {
   return (dispatch) => {
-    dispatch(dataRequestAction());
     return Service.updateContact(id, contact)
       .then((response) => {
         return response.json().then((data) => {
@@ -78,7 +78,6 @@ export function updateContact(id, contact) {
 
 export function deleteContact(id) {
   return (dispatch) => {
-    dispatch(dataRequestAction());
     return Service.deleteContact(id)
       .then(() => {
         return dispatch(deleteContactAction(id));

@@ -15,10 +15,9 @@ const CellHistory = (props) => {
     );
   };
 
-  const showHistoryButton = <button onClick={handler} className="btn btn-primary btn-sm">Show History</button>;
+  const renderHistoryButton = <button onClick={handler} className="btn btn-primary btn-sm">Show History</button>;
 
-
-  return props.row.history.length ? renderHistory(props.row.history) : showHistoryButton;
+  return props.row.history.length ? renderHistory(props.row.history) : renderHistoryButton;
 };
 
 CellHistory.propTypes = {

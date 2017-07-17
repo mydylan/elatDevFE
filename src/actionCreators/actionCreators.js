@@ -1,5 +1,4 @@
 import {
-  DATA_REQUEST,
   DATA_FAILURE,
   GET_CONTACTS,
   GET_HISTORY,
@@ -10,22 +9,9 @@ import {
   HIDE_FORM
 } from '../constants/constants';
 
-export function dataRequestAction() {
-  return {
-    type: DATA_REQUEST,
-    metadata: {
-      isLoading: true
-    },
-    error: false
-  };
-}
-
 export function dataFailureAction(error) {
   return {
     type: DATA_FAILURE,
-    metadata: {
-      isLoading: false
-    },
     error
   };
 }
@@ -36,9 +22,6 @@ export function getContactsAction(data) {
     payload: {
       data
     },
-    metadata: {
-      isLoading: false
-    },
     error: false
   };
 }
@@ -48,9 +31,6 @@ export function getHistoryAction(data, id) {
     type: GET_HISTORY,
     payload: {
       data, id
-    },
-    metadata: {
-      isLoading: false
     },
     error: false
   };
@@ -63,7 +43,6 @@ export function createContactAction(data) {
       data
     },
     metadata: {
-      isLoading: false,
       isActiveForm: false
     },
     error: false
@@ -77,7 +56,6 @@ export function updateContactAction(data, id) {
       data, id
     },
     metadata: {
-      isLoading: false,
       isActiveForm: false
     },
     error: false
@@ -89,9 +67,6 @@ export function deleteContactAction(id) {
     type: DELETE_CONTACT,
     payload: {
       id
-    },
-    metadata: {
-      isLoading: false
     },
     error: false
   };

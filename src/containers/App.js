@@ -1,17 +1,14 @@
-import { connect } from 'react-redux';
-import { getContacts, getHistory, deleteContact, showForm } from '../middlewares/middlewares';
-import ContactList from '../components/ContactList/ContactList';
-import { contactsSelector, isLoadingSelector } from '../selectors/selectors';
+import React from 'react';
+import ContactListContainer from './ContactListContainer';
+import PopupContainer from './PopupContainer';
 
-const mapDispatchToProps = {
-  getContacts, getHistory, deleteContact, showForm
+const App = () => {
+  return (
+    <div>
+      <ContactListContainer />
+      <PopupContainer />
+    </div>
+  );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    contacts: contactsSelector(state),
-    isLoading: isLoadingSelector(state)
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(ContactList);
+export default App;

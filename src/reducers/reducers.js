@@ -1,5 +1,4 @@
 import {
-  DATA_REQUEST,
   DATA_FAILURE,
   GET_CONTACTS,
   GET_HISTORY,
@@ -29,10 +28,6 @@ const deleteContact = (id) => {
 };
 
 const ACTION_HANDLERS = {
-  [DATA_REQUEST]: (state, action) => ({
-    ...state,
-    ...action.metadata
-  }),
   [DATA_FAILURE]: (state, action) => ({
     ...state,
     ...action.metadata,
@@ -77,7 +72,6 @@ const ACTION_HANDLERS = {
 
 const initialState = {
   contacts: [],
-  isLoading: false,
   isActiveForm: false,
   selectedId: '',
   error: false

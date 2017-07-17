@@ -1,4 +1,3 @@
-export const DATA_REQUEST = 'DATA_REQUEST';
 export const DATA_FAILURE = 'DATA_FAILURE';
 export const GET_CONTACTS = 'GET_CONTACTS';
 export const GET_HISTORY = 'GET_HISTORY';
