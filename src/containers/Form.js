@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { createContact, updateContact, hideForm } from '../middlewares/middlewares';
-import FormPopup from '../components/FormPopup/FormPopup';
+import Popup from '../components/Popup/Popup';
 import { contactByIdSelector, isActiveSelector, idSelector } from '../selectors/selectors';
 
 const mapDispatchToProps = {
@@ -15,4 +15,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(FormPopup);
+export default connect(mapStateToProps, mapDispatchToProps)(Popup);

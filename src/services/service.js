@@ -22,7 +22,14 @@ const Service = {
   },
 
   updateContact: (id, data) => {
-    return fetch(`${apiServerUrl}/contacts/${id}`, { method: 'put', body: JSON.stringify(data) });
+    return fetch(`${apiServerUrl}/contacts/${id}`, {
+      method: 'put',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
   },
 
   deleteContact: (id) => {

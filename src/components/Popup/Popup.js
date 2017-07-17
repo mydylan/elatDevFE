@@ -1,34 +1,41 @@
 import React, { PropTypes } from 'react';
-import ContactForm from '../../containers/ContactForm';
-import './FormPopup.css';
+import ContactForm from '../ContactForm/ContactForm';
+import './Popup.css';
 
 const renderHeader = (id) => {
   return id ? 'Update contact' : 'Create contact';
 };
 
-const parseHistory = (data) => {
+const parse = (data) => {
   return {
     ...data,
-    history: data.history.split(', ')
+    history: data.history ? data.history.split('+').map(b => `+${b}`.trim()) : []
   };
 };
 
-class FormPopup extends React.Component {
+class Popup extends React.Component {
 
   static propTypes = {
     isActive: PropTypes.bool,
     selectedId: PropTypes.string,
     hideForm: PropTypes.func,
     createContact: PropTypes.func,
-    updateContact: PropTypes.func
+    updateContact: PropTypes.func,
+    contact: PropTypes.objectOf(PropTypes.any)
   }
 
   onSubmit = (values) => {
     if (this.props.selectedId) {
-      this.props.updateContact(parseHistory(values));
+      this.props.updateContact(this.props.selectedId, parse(values));
     } else {
-      this.props.createContact(parseHistory(values));
+      this.props.createContact(parse(values));
     }
+  }
+
+  renderBody = () => {
+    return (
+      <ContactForm onSubmit={this.onSubmit} contact={this.props.contact} />
+    );
   }
 
   render() {
@@ -39,7 +46,7 @@ class FormPopup extends React.Component {
           <div className="panel panel-default">
             <div className="panel-heading">{ renderHeader(this.props.selectedId) }</div>
             <div className="panel-body">
-              <ContactForm onSubmit={this.onSubmit} />
+              { this.renderBody() }
             </div>
           </div>
         </div>
@@ -48,4 +55,4 @@ class FormPopup extends React.Component {
   }
 }
 
-export default FormPopup;
+export default Popup;

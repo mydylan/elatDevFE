@@ -2,7 +2,7 @@ import { createSelector } from 'reselect';
 
 const contactById = (contacts, id) => {
   return contacts.find((contact) => {
-    return contact.id === id;
+    return contact._id === id;
   });
 };
 
